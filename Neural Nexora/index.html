@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPG Studio | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-grid">
+        <nav class="glass-panel nav-bar">
+            <div class="logo">NPG<span>Studio</span></div>
+            <div class="btn-group">
+                <button id="btnSerial" class="btn-usb">CONNECT USB</button>
+                <button id="btnConnect" class="btn-ble">CONNECT BLE</button>
+                <button id="btnStart" class="btn-success" disabled>START</button>
+                <button id="btnStop" class="btn-danger" disabled>STOP</button>
+            </div>
+        </nav>
+
+        <main class="glass-panel graph-container">
+            <div class="panel-header">
+                <h3>Live Waveform</h3>
+                <span id="statusLabel" class="status-badge">Disconnected</span>
+            </div>
+            <div id="canvasWrapper">
+                <canvas id="eegCanvas"></canvas>
+            </div>
+        </main>
+
+        <aside class="sidebar-layout">
+            <section class="glass-panel focus-box">
+                <h3 class="panel-title">Focus Score</h3>
+                <div class="focus-meter">
+                    <div id="focusValue">0</div>
+                    <div class="sub-label">% FOCUS</div>
+                </div>
+            </section>
+
+            <section class="glass-panel settings-box">
+                <h3 class="panel-title">Channel Config</h3>
+                <div id="channelControls">
+                    </div>
+            </section>
+
+            <section class="glass-panel bands-box">
+                <h3 class="panel-title">Signal Analysis</h3>
+                <div class="band-row">
+                    <label>Alpha (8-12 Hz)</label>
+                    <div class="progress-bg"><div id="barAlpha" class="progress-fill alpha"></div></div>
+                </div>
+                <div class="band-row">
+                    <label>Beta (13-30 Hz)</label>
+                    <div class="progress-bg"><div id="barBeta" class="progress-fill beta"></div></div>
+                </div>
+                <hr class="divider">
+                <div class="band-row">
+                    <label>50 Hz Noise</label>
+                    <div class="progress-bg"><div id="bar50Hz" class="progress-fill noise"></div></div>
+                </div>
+                <div class="stats-footer">
+                    <span>CHANNELS: <b id="chCount">0</b></span>
+                    <span>BATT: <b id="battLevel">--</b></span>
+                </div>
+            </section>
+        </aside>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
