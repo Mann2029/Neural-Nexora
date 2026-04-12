@@ -1,186 +1,212 @@
-# 🧠 NPG Studio | Modular Biosignal Dashboard
+# 🧠 Neural Nexora | Advanced AI Neural Analytics
 
-> **Real-Time Neurofeedback · Browser-Native · Hardware-Integrated**
+> **Real-Time Neurofeedback · AI Focus Detection · Browser-Based BCI**
 
-**NPG Studio** is a high-performance, browser-based neurofeedback and biosignal visualization platform engineered for the **NPG-Lite** ecosystem. It enables real-time EEG/EMG signal acquisition, intelligent signal processing, and cognitive focus estimation—directly in the browser with zero native installations.
+NPG STUDIO is a **high-performance, browser-native neurofeedback platform** that monitors real-time student focus using **EEG/EOG biosignals + AI (TensorFlow.js)**.
+
+It combines **IoT hardware + signal processing + deep learning** into a **single interactive dashboard**.
 
 ---
 
 ## 🌟 Overview
 
-NPG Studio bridges **biosignal hardware** with **modern web technologies**, providing:
+Neural Nexora transforms raw brain signals into actionable insights:
 
-- ⚡ Real-time signal streaming & processing  
-- 🧠 Cognitive state (Focus) estimation  
-- 📊 Multi-channel waveform visualization (up to 6 channels)  
-- 🔌 Seamless BLE + USB connectivity  
-- 🎨 Professional, modern UI  
-
----
-
-## 🚀 Key Features
-
-### 🔗 Dual-Mode Connectivity
-- **Bluetooth Low Energy (BLE)**  
-  - Wireless operation  
-  - Low-latency streaming  
-  - Ideal for wearable setups  
-
-- **Web Serial (USB)**  
-  - High stability  
-  - Consistent throughput  
-  - Perfect for lab/research environments  
+- ⚡ Real-time EEG signal processing  
+- 🧠 AI-based focus prediction  
+- 📊 Multi-channel waveform visualization  
+- 🔌 Web Bluetooth connectivity  
+- 💾 Research-grade data export  
 
 ---
 
-### 📡 High-Fidelity Waveform Visualization
-- Real-time rendering using **HTML Canvas**
-- Supports up to **6 simultaneous channels**
-- Fully adjustable:
-  - 📏 Vertical Gain (amplitude scaling)
-  - 🔍 Horizontal Zoom (time scaling)
-- Smooth and optimized for high refresh rates  
+## 🧩 System Architecture
+EEG Sensors → ESP32 → BLE → Browser
+↓
+BiosignalEngine (JS)
+↓
+TensorFlow.js AI Model
+↓
+Web Dashboard
+
 
 ---
 
-### 🧠 Intelligent Signal Analysis
+## 🚀 Core Features
 
-#### 🎯 Focus Scoring System
-- Real-time cognitive load estimation  
-- Based on:
-  - Signal amplitude  
-  - Variance analysis  
-- Includes **3-second static latch logic**:
-  - Prevents flickering  
-  - Improves readability  
-  - Stabilizes output  
+### 🔗 Connectivity
+- Web Bluetooth API (GATT)
+- Real-time streaming from **NPG devices**
 
 ---
 
-#### 📊 Frequency Band Tracking
-- **Alpha Waves** → Relaxation  
-- **Beta Waves** → Focus & alertness  
-- Continuous real-time tracking  
+### 📡 Real-Time Waveform Engine
+- Canvas-based rendering
+- Multi-channel EEG visualization
+- Ultra gain: **15x amplification**
 
 ---
 
-#### ⚡ Noise Detection
-- Detects:
-  - **50Hz** (India/Europe)  
-  - **60Hz** (US)  
-- Identifies electrical interference instantly  
+### 🧠 AI Focus Prediction (TensorFlow.js)
+
+- 3-Layer Neural Network
+- Runs **fully in browser**
+- Output: **15% → 85% focus score**
 
 ---
 
-### 🎨 Glassmorphism UI
-- Modern **dark-themed dashboard**
-- Neon accents for clarity  
-- CSS Backdrop Filters (glass effect)  
-- Clean, minimal, professional layout  
+### ⏱️ Smart Calibration
+- **1-minute baseline learning**
+- AI activates after calibration
+- Prevents inaccurate predictions
 
 ---
 
-## 🛠️ Tech Stack
+### 📊 Frequency Analysis
+- Alpha (Relaxation)
+- Beta (Focus)
+- Noise (50Hz interference)
 
-| Layer        | Technology |
-|-------------|-----------|
-| Frontend     | HTML5, CSS3 (Glassmorphism UI) |
-| Logic        | Vanilla JavaScript (ES6+) |
-| Communication| Web Bluetooth API, Web Serial API |
-| Rendering    | HTML Canvas |
-| Processing   | Custom `BiosignalEngine` |
+---
+
+### 💾 Data Export
+- JSON session logging
+- Per-second tracking
+- Research-ready format
 
 ---
 
 ## 📁 Project Structure
-NPG-Studio/
+Neural-Nexora/
 │
-├── index.html # Main dashboard structure
-├── style.css # Neon / Glass UI styling
-├── app.js # Hardware interface + rendering logic
-├── engine.js # Signal processing + Focus Score logic
-└── README.md # Documentation
+├── index.html # UI layout + TensorFlow.js
+├── style.css # Soft-Light UI design
+├── app.js # BLE + Rendering + Controls
+├── engine.js # Signal processing core
+├── ml.js # AI model (TensorFlow.js)
+└── README.md
 
 
 ---
 
-## 🔌 Hardware Setup
+## 🖥️ Frontend (index.html)
 
-### Supported Devices
-- **NPG-Lite**
-- **Beast Playmate**
-- Compatible ESP32-based biosignal boards  
+Main dashboard includes:
 
----
+- Device controls (PAIR / START / STOP / EXPORT)
+- EEG Canvas rendering
+- Focus score panel
+- Frequency bars
 
-### 🔵 Bluetooth (BLE)
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<canvas id="eegCanvas"></canvas>
 
-1. Power ON device  
-2. Remove device from system Bluetooth settings (**must be unpaired**)  
-3. Click **CONNECT BLE**  
-4. Select device from browser popup  
+🎨 UI Design (style.css)
 
----
+Soft-Light Theme:
 
-### 🔌 USB Serial
+Blue → Focus
+Yellow → Calibration
+Off-white → Background
 
-1. Connect using a **data cable**  
-2. Click **CONNECT USB**  
-3. Select correct COM port  
-4. Use baud rate: 115200
+Features:
 
+Glass-style cards
+Responsive grid layout
+Real-time progress bars
 
----
+⚙️ Core Logic (app.js)
 
-## ⚙️ How It Works
+Handles:
 
-The system is powered by a custom **`BiosignalEngine`**, designed for **low-latency, real-time signal processing**.
-
----
-
-## 🔄 Signal Processing Pipeline
-
-### 1. Data Acquisition
-- BLE → Binary packets  
-- USB → Text stream  
-
----
-
-### 2. De-Interleaving
-- Extracts multi-channel data  
-- Uses **16-bit Big Endian decoding**
-
----
-
-### 3. Noise Reduction (EMA Filter)
+🔌 BLE Connection
+navigator.bluetooth.requestDevice(...)
+📡 Data Streaming
+Receives binary packets
+Sends to BiosignalEngine
+🎥 Rendering
+Canvas-based waveform drawing
+15x vertical gain
+💾 Export
+JSON.stringify(engine.getSessionData())
+⚙️ Signal Processing Engine (engine.js)
+🔄 Data Flow
+Decode BLE packets
+Apply EMA smoothing
+Store circular buffer
+Extract features
+Send to AI
+📉 EMA Filter
 y(t) = αx(t) + (1 - α)y(t-1)
+α = 0.25
+Removes noise from ADC
+📊 Feature Extraction
+Amplitude (last 400 samples)
+Alpha / Beta estimation
+Noise detection
+⏱️ Calibration Logic
+this.calibrationTime = 60000; // 1 minute
+Before 1 min → --
+After → AI prediction starts
+🤖 AI Model (ml.js)
+Architecture
+Input: [alpha, beta, noise]
 
+Dense(12, relu)
+Dense(8, relu)
+Dense(1, sigmoid)
+Prediction Logic
+Normalized inputs
+Sigmoid output
+Scaled to 15–85%
+Smart Heuristic Boost
+if (beta > alpha * 1.2 && noise < 20)
 
-- Default: **α = 0.25**
-- Reduces ADC noise while preserving signal shape  
+→ boosts focus score
 
----
+🚦 Workflow
+1. Pair Device
+Click PAIR DEVICE
+Connect via BLE
+2. Start Session
+Click START SESSION
+Data begins streaming
+3. Calibration (0–60 sec)
+Focus shows --
+System learns baseline
+4. AI Prediction
+Real-time focus %
+Live frequency bars
+5. Export Data
+Click EXPORT DATA
+Download JSON
+⚠️ Troubleshooting
+Issue	Fix
+BLE not connecting	Unpair device
+Flat signals	Check electrodes
+Focus = --	Wait calibration
+No export	Stop session first
+💰 Cost Advantage
+System	Cost
+Imported	₹70k–₹90k
+Nexora	₹6k–₹7.5k
+🏆 Unique Points
+🇮🇳 First classroom BCI system in India
+⚡ Real-time AI in browser
+💻 No installation required
+📊 Research-ready data
+👥 Team Neural Nexora
+Lavina Korani – Team Lead, BCI Research
+Mann Chavda – IoT Developer
+Nisarg Pandya – DSA Expert
+Aman Yadav – Cloud (AWS)
+Tasneem Kolsawala – MERN Dev
+Tanishka Trivedi – MERN Dev
+📜 License
 
-### 4. Feature Extraction
-- Signal amplitude  
-- Rolling variance (**400-sample window**)  
+MIT License © 2026
 
----
+🧠 Vision
 
-### 5. Focus Score Computation
-- Combines amplitude + variance  
-- Outputs normalized cognitive state  
-
----
-
-### 6. Static Latching
-- Freezes output for **3 seconds**
-- Ensures stable and professional display  
-
----
-
-## ⚙️ Customization
-
-### 🔍 Zoom (Time Axis)
-```js
-bufferSize: 5000
+To make brain-computer interfaces accessible, affordable, and practical for real-world classrooms.
