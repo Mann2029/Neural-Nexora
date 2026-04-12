@@ -1,0 +1,58 @@
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --light-blue: #3b82f6;
+    --light-yellow: #eab308;
+    --border: #e2e8f0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0; padding: 15px; height: 100vh; box-sizing: border-box; overflow: hidden;
+}
+
+.dashboard-grid {
+    display: grid; grid-template-columns: 1fr 340px; grid-template-rows: 70px 1fr; gap: 15px; height: 100%;
+}
+
+.nav-bar, .main-content, .metric-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.nav-bar { grid-column: 1 / span 2; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.3rem; font-weight: 900; }
+.logo span { color: var(--light-blue); }
+
+button {
+    border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700;
+    cursor: pointer; transition: 0.2s; color: white;
+}
+.btn-primary { background: var(--light-blue); }
+.btn-success { background: #10b981; }
+.btn-danger { background: #ef4444; }
+.btn-secondary { background: var(--light-yellow); }
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.main-content { display: flex; flex-direction: column; }
+#canvasWrapper { flex: 1; width: 100%; margin-top: 10px; }
+.status-badge { font-size: 0.7rem; color: var(--light-blue); background: #eff6ff; padding: 4px 10px; border-radius: 20px; font-weight: 800; border: 1px solid #dbeafe; }
+
+.focus-meter { text-align: center; }
+#focusValue { font-size: 5rem; font-weight: 900; color: var(--light-blue); line-height: 1; }
+.sub-label { font-size: 0.75rem; letter-spacing: 3px; color: var(--text-muted); font-weight: 800; }
+.ml-status-text { font-size: 0.75rem; color: var(--light-yellow); font-weight: 700; margin-top: 5px; }
+
+.band-row { margin-bottom: 15px; }
+.band-row label { display: block; font-size: 0.7rem; font-weight: 800; margin-bottom: 5px; color: var(--text-muted); }
+.progress-bg { background: #f1f5f9; height: 10px; border-radius: 5px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; transition: width 0.3s; }
+.alpha { background: #8b5cf6; }
+.beta { background: var(--light-blue); }
+.noise { background: #f43f5e; }
+
+.stats-footer { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); font-weight: 700; margin-top: 20px; }
